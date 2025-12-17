@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import type { NavigateFunction } from "react-router-dom";
 import { dummyChats, dummyUserData } from "../assets/assets";
 
-interface Message {
+export interface Message {
   isImage: boolean;
   isPublished: boolean;
   role: string;
@@ -12,7 +12,7 @@ interface Message {
   timestamp: number;
 }
 
-interface Chat {
+export interface Chat {
   _id: string;
   userId: string;
   userName?: string;
@@ -22,7 +22,7 @@ interface Chat {
   updatedAt: string;
 }
 
-interface User {
+export interface User {
   _id: string;
   name: string;
   email: string;
