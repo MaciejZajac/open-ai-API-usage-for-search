@@ -54,7 +54,9 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [chats, setChats] = useState<Chat[]>([]);
   const [selectedChat, setSelectedChat] = useState<Chat | null>(null);
-  const [theme, setTheme] = useState<string>(localStorage.getItem("theme") || "light");
+  const [theme, setTheme] = useState<string>(
+    localStorage.getItem("theme") || "light"
+  );
 
   const fetchUser = async () => {
     setUser(dummyUserData);
@@ -63,29 +65,30 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const fetchUsersChats = () => {
     setChats(dummyChats as Chat[]);
     setSelectedChat((dummyChats[0] as Chat) || null);
-  }
+  };
 
   useEffect(() => {
-    if(theme === "dark") {
-        document.documentElement.classList.add('dark');
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
     } else {
-        document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove("dark");
     }
+
+    localStorage.setItem("theme", theme);
   }, [theme]);
 
   useEffect(() => {
-    if(user) {
-        fetchUsersChats();
+    if (user) {
+      fetchUsersChats();
     } else {
-        setChats([]);
-        setSelectedChat(null);
+      setChats([]);
+      setSelectedChat(null);
     }
   }, [user]);
 
   useEffect(() => {
     fetchUser();
   }, []);
-
 
   const value: AppContextType = {
     navigate,
